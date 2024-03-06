@@ -1,0 +1,26 @@
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Provider
+metadata:
+  name: slack-bot
+  namespace: static-sample
+spec:
+  type: slack
+  channel: general
+  address: https://slack.com/api/chat.postMessage
+  secretRef:
+    name: slack-bot-token
+---
+apiVersion: notification.toolkit.fluxcd.io/v1beta3
+kind: Alert
+metadata:
+  name: slack
+  namespace: static-sample
+spec:
+  summary: "Flagger impacted in us-east-2"
+  providerRef:
+    name: slack-bot
+  eventSeverity: trace
+  eventSources:
+    - kind: Kustomization
+      name: '*'
