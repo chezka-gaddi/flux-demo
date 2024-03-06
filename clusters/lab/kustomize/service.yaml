@@ -5,10 +5,10 @@ metadata:
   name: static-sample
   namespace: static-sample
 spec:
+  type: NodePort
   ports:
-    - name: http
-      port: 80
-      protocol: TCP
-      targetPort: 80
+  - port: 8080
+    nodePort: 30001
+    protocol: TCP
   selector:
     app: static-sample
