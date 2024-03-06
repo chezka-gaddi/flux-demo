@@ -14,7 +14,7 @@ spec:
 apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert
 metadata:
-  name: slack
+  name: slack-bot-alert
   namespace: static-sample
 spec:
   summary: "Flagger impacted in us-east-2"
