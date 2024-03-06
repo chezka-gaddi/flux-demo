@@ -15,6 +15,6 @@ spec:
         app: static-sample
     spec:
       containers:
-        - image: mstruebing/static-sample:1666603774
+        - image: chezka-gaddi/static-sample:1666603774
           imagePullPolicy: IfNotPresent
           name: static-sample
