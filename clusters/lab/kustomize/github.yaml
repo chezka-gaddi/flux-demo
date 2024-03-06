@@ -13,7 +13,7 @@ spec:
 apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert
 metadata:
-  name: github-status
+  name: github-status-notify
   namespace: static-sample
 spec:
   providerRef:
