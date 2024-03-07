@@ -20,4 +20,4 @@ spec:
     name: github-status
   eventSources:
     - kind: Kustomization
-      name: static-sample
+      name: flux-system
