@@ -3,7 +3,7 @@ apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Provider
 metadata:
   name: github-status
-  namespace: static-sample
+  namespace: flux-system
 spec:
   type: github
   address: https://github.com/chezka-gaddi/flux-demo
@@ -14,7 +14,7 @@ apiVersion: notification.toolkit.fluxcd.io/v1beta3
 kind: Alert
 metadata:
   name: github-status-notify
-  namespace: static-sample
+  namespace: flux-system
 spec:
   providerRef:
     name: github-status
