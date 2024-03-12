@@ -5,7 +5,7 @@ metadata:
   name: static-sample
   namespace: static-sample
 spec:
-  replicas: 10
+  replicas: 20
   selector:
     matchLabels:
       app: static-sample
@@ -20,6 +20,6 @@ spec:
         app: static-sample
     spec:
       containers:
-        - image: nigelpoulton/k8sbook:1.0
+        - image: nigelpoulton/k8sbook:2.0
           imagePullPolicy: IfNotPresent
           name: static-sample
