@@ -5,7 +5,7 @@ metadata:
   name: static-sample
   namespace: flux-system
 spec:
-  interval: 10m0s
+  interval: 7m0s
   path: ./clusters/lab/kustomize
   prune: true
   sourceRef:
