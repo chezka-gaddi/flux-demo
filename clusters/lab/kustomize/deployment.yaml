@@ -20,6 +20,6 @@ spec:
         app: static-sample
     spec:
       containers:
-        - image: cgaddi/flask-app:latest
+        - image: cgaddi/node-app:latest
           imagePullPolicy: IfNotPresent
           name: static-sample
