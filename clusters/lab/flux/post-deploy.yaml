@@ -10,7 +10,7 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: "./post-deploy/"
+  path: "./clusters/lab/post-deploy/"
   interval: 60m
   timeout: 5m
   prune: true
