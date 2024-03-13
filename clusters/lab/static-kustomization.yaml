@@ -3,7 +3,7 @@ apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
   name: static-sample
-  namespace: flux-system
+  namespace: flux-system 
 spec:
   interval: 5m0s
   path: ./clusters/lab/kustomize
@@ -12,3 +12,8 @@ spec:
     kind: GitRepository
     name: flux-system
   targetNamespace: static-sample
+  healthChecks:
+    - apiVersion: apps/v1
+      kind: Deployment
+      name: static-sample
+      namespace: static-sample
