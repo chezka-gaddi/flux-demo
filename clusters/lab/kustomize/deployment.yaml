@@ -20,6 +20,6 @@ spec:
         app: static-sample
     spec:
       containers:
-        - image: nigelpoulton/k8sbook:2.0
+        - image: cgaddi/flask-app:latest
           imagePullPolicy: IfNotPresent
           name: static-sample
