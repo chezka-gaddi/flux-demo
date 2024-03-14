@@ -26,8 +26,8 @@ spec:
   analysis:
     interval: 1m
     threshold: 5
-    # maxWeight: 50
-    # stepWeight: 5
+    maxWeight: 50
+    stepWeight: 5
     metrics:
       # - name: request-success-rate
       #   thresholdRange:
