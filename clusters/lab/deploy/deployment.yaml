@@ -5,7 +5,7 @@ metadata:
   name: static-sample
   namespace: static-sample
 spec:
-  replicas: 20
+  replicas: 30
   selector:
     matchLabels:
       app: static-sample
@@ -20,6 +20,6 @@ spec:
         app: static-sample
     spec:
       containers:
-        - image: cgaddi/node-app:1.1
+        - image: cgaddi/node-app:1.1.2
           imagePullPolicy: IfNotPresent
           name: static-sample

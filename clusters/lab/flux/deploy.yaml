@@ -6,7 +6,7 @@ metadata:
   namespace: flux-system 
 spec:
   interval: 5m0s
-  path: ./clusters/lab/kustomize
+  path: ./clusters/lab/deploy
   prune: true
   sourceRef:
     kind: GitRepository
