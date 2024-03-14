@@ -24,8 +24,8 @@ spec:
     targetPort: 9898
     portDiscovery: true
   analysis:
-    # interval: 1m
-    # threshold: 10
+    interval: 1m
+    threshold: 5
     # maxWeight: 50
     # stepWeight: 5
     # metrics:
