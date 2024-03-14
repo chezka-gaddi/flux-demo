@@ -38,9 +38,10 @@ spec:
           max: 500
         interval: 1m
     alerts:
-      - name: github-notification
+      - name: "on-call Slack"
+        severity: info
         providerRef:
-          name: github-status-notify
+          name: slack-bot-alert
           namespace: flux-system
     # webhooks:
     #   - name: load-test

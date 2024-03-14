@@ -1,11 +1,25 @@
----
 apiVersion: flagger.app/v1beta1
 kind: AlertProvider
 metadata:
-  name: github-status-notify
+  name: slack-bot-alert
   namespace: flux-system
 spec:
-  type: github
-  address: https://github.com/chezka-gaddi/flux-demo
+  type: slack
+  channel: general
+  username: flagger
+  # webhook address (ignored if secretRef is specified)
+  address: https://slack.com/api/chat.postMessage
+  # optional http/s proxy
+  # proxy: http://my-http-proxy.com
+  # secret containing the webhook address (optional)
   secretRef:
-    name: github-token
+    name: slack-bot-token
+# ---
+# apiVersion: v1
+# kind: Secret
+# metadata:
+#   name: on-call-url
+#   namespace: flagger
+# data:
+#   address: <encoded-url>
+#   token: slack-bot-token
