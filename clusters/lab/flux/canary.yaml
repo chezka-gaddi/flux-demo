@@ -39,7 +39,7 @@ spec:
         interval: 1m
     alerts:
       - name: "on-call Slack"
-        severity: info
+        severity: warn
         providerRef:
           name: slack-bot-alert
           namespace: flux-system
