@@ -5,13 +5,14 @@ metadata:
   name: app-post-deploy
   namespace: flux-system
 spec:
-  dependsOn:
-    - name: static-sample
+  # dependsOn:
+  #   - name: static-sample
   sourceRef:
     kind: GitRepository
     name: flux-system
-  path: "./clusters/lab/post-deploy/"
-  interval: 60m
+  path: ./clusters/lab/post-deploy
+  targetNamespace: flux-system
+  interval: 5m
   timeout: 5m
   prune: true
   wait: true
