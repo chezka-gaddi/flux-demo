@@ -20,7 +20,7 @@ spec:
   summary: "Flagger impacted in us-east-2"
   providerRef:
     name: slack-bot
-  eventSeverity: info
+  eventSeverity: error
   eventSources:
     - kind: Kustomization
       name: '*'
