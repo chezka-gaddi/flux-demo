@@ -1,50 +1,50 @@
-# apiVersion: flagger.app/v1beta1
-# kind: Canary
-# metadata:
-#   name: static-sample
-#   namespace: static-sample
-# spec:
-#   progressDeadlineSeconds: 60
-#   targetRef:
-#     apiVersion: apps/v1
-#     kind: Deployment
-#     name: static-sample
-#   # autoscalerRef:
-#   #   apiVersion: autoscaling/v2beta2
-#   #   kind: HorizontalPodAutoscaler
-#   #   name: static-sample
-#   #   primaryScalerReplicas:
-#   #     minReplicas: 2
-#   #     maxReplicas: 5
-#   service:
-#     name: static-sample
-#     port: 9898
-#     # portName: http
-#     # appProtocol: http
-#     targetPort: 9898
-#     # portDiscovery: true
-#   analysis:
-#     interval: 1m
-#     threshold: 5
-#     maxWeight: 50
-#     stepWeight: 5
-#     metrics:
-#       # - name: request-success-rate
-#       #   thresholdRange:
-#       #     min: 99
-#       #   interval: 1m
-#       - name: request-duration
-#         thresholdRange:
-#           max: 500
-#         interval: 1m
-#     alerts:
-#       - name: "on-call Slack"
-#         severity: warn
-#         providerRef:
-#           name: slack-bot-alert
-#           namespace: flux-system
-#     webhooks:
-#       - name: load-test
-#         url: http://flagger-loadtester.test/
-#         metadata:
-#           cmd: "hey -z 1m -q 10 -c 2 http://static-sample-canary.test:9898/"
+apiVersion: flagger.app/v1beta1
+kind: Canary
+metadata:
+  name: static-sample
+  namespace: static-sample
+spec:
+  progressDeadlineSeconds: 60
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: static-sample
+  # autoscalerRef:
+  #   apiVersion: autoscaling/v2beta2
+  #   kind: HorizontalPodAutoscaler
+  #   name: static-sample
+  #   primaryScalerReplicas:
+  #     minReplicas: 2
+  #     maxReplicas: 5
+  service:
+    name: static-sample
+    port: 9898
+    # portName: http
+    # appProtocol: http
+    targetPort: 9898
+    # portDiscovery: true
+  analysis:
+    interval: 1m
+    threshold: 5
+    maxWeight: 50
+    stepWeight: 5
+    metrics:
+      # - name: request-success-rate
+      #   thresholdRange:
+      #     min: 99
+      #   interval: 1m
+      - name: request-duration
+        thresholdRange:
+          max: 500
+        interval: 1m
+    alerts:
+      - name: "on-call Slack"
+        severity: warn
+        providerRef:
+          name: slack-bot-alert
+          namespace: flux-system
+    webhooks:
+      - name: load-test
+        url: http://flagger-loadtester.test/
+        metadata:
+          cmd: "hey -z 1m -q 10 -c 2 http://static-sample-canary.test:9898/"
