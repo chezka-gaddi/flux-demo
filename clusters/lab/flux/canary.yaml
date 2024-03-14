@@ -37,8 +37,13 @@ spec:
         thresholdRange:
           max: 500
         interval: 1m
-    webhooks:
-      - name: load-test
-        url: http://flagger-loadtester.test/
-        metadata:
-          cmd: "hey -z 1m -q 10 -c 2 http://static-sample-canary.test:9898/"
+    alerts:
+      - name: github-notification
+        providerRef:
+          name: github-status-notify
+          namespace: flux-system
+    # webhooks:
+    #   - name: load-test
+    #     url: http://flagger-loadtester.test/
+    #     metadata:
+    #       cmd: "hey -z 1m -q 10 -c 2 http://static-sample-canary.test:9898/"

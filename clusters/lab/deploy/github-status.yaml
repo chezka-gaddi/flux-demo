@@ -1,0 +1,11 @@
+---
+apiVersion: flagger.app/v1beta1
+kind: AlertProvider
+metadata:
+  name: github-status-notify
+  namespace: flux-system
+spec:
+  type: github
+  address: https://github.com/chezka-gaddi/flux-demo
+  secretRef:
+    name: github-token
