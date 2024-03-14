@@ -22,5 +22,5 @@ spec:
     name: slack-bot
   eventSeverity: info
   eventSources:
-    - kind: Job
-      name: '*'
+    - kind: Kustomization
+      name: app-post-deploy
