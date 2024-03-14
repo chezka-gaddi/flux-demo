@@ -4,18 +4,18 @@ metadata:
   name: static-sample
   namespace: static-sample
 spec:
-  progressDeadlineSeconds: 60
+  # progressDeadlineSeconds: 60
   targetRef:
     apiVersion: apps/v1
     kind: Deployment
     name: static-sample
-  autoscalerRef:
-    apiVersion: autoscaling/v2beta2
-    kind: HorizontalPodAutoscaler
-    name: static-sample
-    primaryScalerReplicas:
-      minReplicas: 2
-      maxReplicas: 5
+  # autoscalerRef:
+  #   apiVersion: autoscaling/v2beta2
+  #   kind: HorizontalPodAutoscaler
+  #   name: static-sample
+  #   primaryScalerReplicas:
+  #     minReplicas: 2
+  #     maxReplicas: 5
   service:
     name: static-sample
     port: 9898
@@ -29,10 +29,10 @@ spec:
     maxWeight: 50
     stepWeight: 5
     metrics:
-      - name: request-success-rate
-        thresholdRange:
-          min: 99
-        interval: 1m
+      # - name: request-success-rate
+      #   thresholdRange:
+      #     min: 99
+      #   interval: 1m
       - name: request-duration
         thresholdRange:
           max: 500

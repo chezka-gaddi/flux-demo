@@ -7,3 +7,4 @@ resources:
   - service.yaml
   - ingress.yaml
   - github.yaml
+  - slack.yaml

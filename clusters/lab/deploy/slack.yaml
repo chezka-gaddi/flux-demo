@@ -22,7 +22,5 @@ spec:
     name: slack-bot
   eventSeverity: info
   eventSources:
-    - kind: GitRepository
-      name: '*'
     - kind: Kustomization
       name: '*'
