@@ -28,15 +28,15 @@ spec:
     threshold: 5
     # maxWeight: 50
     # stepWeight: 5
-    # metrics:
+    metrics:
       # - name: request-success-rate
       #   thresholdRange:
       #     min: 99
       #   interval: 1m
-      # - name: request-duration
-      #   thresholdRange:
-      #     max: 500
-      #   interval: 1m
+      - name: request-duration
+        thresholdRange:
+          max: 500
+        interval: 1m
     alerts:
       - name: "on-call Slack"
         severity: info
