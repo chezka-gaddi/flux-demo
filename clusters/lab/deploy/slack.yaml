@@ -17,7 +17,7 @@ metadata:
   name: slack-bot
   namespace: flux-system
 spec:
-  summary: "Flagger impacted in us-east-2"
+  summary: "Kustomization impacted in us-east-2"
   providerRef:
     name: slack-bot
   eventSeverity: info
