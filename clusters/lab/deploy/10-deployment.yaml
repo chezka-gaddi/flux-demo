@@ -24,6 +24,7 @@ spec:
               valueFrom: 
                 secretKeyRef:
                   name: slack-webhook-url # creating a secret for this var is recommended
+                  key: token
             - name: namespace
               valueFrom:
                 fieldRef:
