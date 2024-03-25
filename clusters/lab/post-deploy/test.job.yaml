@@ -1,36 +1,36 @@
-# apiVersion: batch/v1
-# kind: Job
-# metadata:
-#   name: run-tests
-#   namespace: flux-system
-# spec:
-#   template:
-#     spec:
-#       containers:
-#       - name: run-tests
-#         image: perl:5.34.0
-#         command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(8000)"]
-#       restartPolicy: Never
-#   backoffLimit: 4
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: github-action-trigger
+  name: run-tests
   namespace: flux-system
 spec:
   template:
     spec:
       containers:
-        - name: github-action-trigger-container
-          image: curlimages/curl:latest  # Using a container with curl pre-installed
-          command: ["sh", "-c"]
-          args:
-            - |
-              curl https://www.boredapi.com/api/activity
-          envFrom:
-            - secretRef:
-                name: github-token
+      - name: run-tests
+        image: perl:5.34.0
+        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(8000)"]
       restartPolicy: Never
+  backoffLimit: 4
+apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: github-action-trigger
+#   namespace: flux-system
+# spec:
+#   template:
+#     spec:
+#       containers:
+#         - name: github-action-trigger-container
+#           image: curlimages/curl:latest  # Using a container with curl pre-installed
+#           command: ["sh", "-c"]
+#           args:
+#             - |
+#               curl https://www.boredapi.com/api/activity
+#           envFrom:
+#             - secretRef:
+#                 name: github-token
+#       restartPolicy: Never
       # volumes:
       #   - name: github-access-token
       #     secret:
