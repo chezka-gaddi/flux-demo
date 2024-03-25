@@ -1,14 +1,19 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: run-tests
+  name: github-action-trigger
   namespace: flux-system
 spec:
   template:
     spec:
       containers:
-      - name: run-tests
-        image: perl:5.34.0
-        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+        - name: github-action-trigger-container
+          image: curlimages/curl:latest  # Using a container with curl pre-installed
+          command: ["sh", "-c"]
+          args:
+            - |
+              curl -X POST -H "Content-Type: application/json" https://api.restful-api.dev/objects -d '{"name": "Chez", "data": {"year": 1994, "info": ${token}}}'
+          envFrom:
+            - secretRef:
+                name: test
       restartPolicy: Never
-  backoffLimit: 4
