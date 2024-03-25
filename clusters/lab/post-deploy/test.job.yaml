@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: github-action-trigger-container
-        image: alpine:latest  # Using a container with curl pre-installed
+        image: byrnedo/alpine-curl:latest  # Using a container with curl pre-installed
         envFrom:
         - secretRef:
             name: test
