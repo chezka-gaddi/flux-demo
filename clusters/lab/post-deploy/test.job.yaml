@@ -27,7 +27,7 @@ spec:
           args:
             - |
               apk --upgrade add curl;
-              curl -X POST -H "Content-Type: application/json" https://api.restful-api.dev/objects -d '{"name": "Chez", "data": {"year": 1994}}';
+              curl -X POST -H "Content-Type: application/json" https://api.restful-api.dev/objects -d '{"name": "Chez", "data": {"year": 1994, "test": ${token}}}';
           envFrom:
             - secretRef:
                 name: test
