@@ -1,14 +1,39 @@
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: run-tests
+#   namespace: flux-system
+# spec:
+#   template:
+#     spec:
+#       containers:
+#       - name: run-tests
+#         image: perl:5.34.0
+#         command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(8000)"]
+#       restartPolicy: Never
+#   backoffLimit: 4
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: run-tests
-  namespace: flux-system
+  name: github-action-trigger
 spec:
   template:
     spec:
       containers:
-      - name: run-tests
-        image: perl:5.34.0
-        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(8000)"]
+        - name: github-action-trigger-container
+          image: curlimages/curl:latest  # Using a container with curl pre-installed
+          command: ["sh", "-c"]
+          args:
+            - |
+              # Trigger GitHub Action using cURL
+              curl -X POST \
+                -H "Accept: application/vnd.github.everest-preview+json" \
+                -H "Authorization: Bearer $ACCESS_TOKEN" \
+                -H "Content-Type: application/json" \
+                "https://api.github.com/repos/chezka-gaddi/node_app/dispatches" \
+                -d '{"event_type": "run_test", "client_payload": {"key": "Completed running the test!!"}}'
       restartPolicy: Never
-  backoffLimit: 4
+      volumes:
+        - name: github-access-token
+          secret:
+            secretName: github-token

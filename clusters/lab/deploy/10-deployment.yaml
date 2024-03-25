@@ -1,45 +1,45 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  labels:
-    app: kjn
-  name: k8s-job-notify
-  namespace: flux-system
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: kjn
-  template:
-    metadata:
-      annotations:
-        sidecar.istio.io/inject: 'false'
-      labels:
-        app: kjn
-    spec:
-      #serviceAccountName: k8s-job-notify (optional, see RBAC)
-      containers:
-        - env:
-            - name: webhook
-              valueFrom: 
-                secretKeyRef:
-                  name: slack-webhook-url # creating a secret for this var is recommended
-                  key: token
-            - name: namespace
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.namespace
-            - name: incluster
-              value: '1'
-            - name: "notification_level"
-              value: 'all'  # or 'failed'
-          image: sukeesh/k8s-job-notify:latest
-          name: k8s-job-notify
-          args: ['--cluster-name=test']
-          resources:
-            limits:
-              cpu: 500m
-              memory: 256Mi
-            requests:
-              cpu: 500m
-              memory: 128Mi
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     app: kjn
+#   name: k8s-job-notify
+#   namespace: flux-system
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: kjn
+#   template:
+#     metadata:
+#       annotations:
+#         sidecar.istio.io/inject: 'false'
+#       labels:
+#         app: kjn
+#     spec:
+#       #serviceAccountName: k8s-job-notify (optional, see RBAC)
+#       containers:
+#         - env:
+#             - name: webhook
+#               valueFrom: 
+#                 secretKeyRef:
+#                   name: slack-webhook-url # creating a secret for this var is recommended
+#                   key: token
+#             - name: namespace
+#               valueFrom:
+#                 fieldRef:
+#                   fieldPath: metadata.namespace
+#             - name: incluster
+#               value: '1'
+#             - name: "notification_level"
+#               value: 'all'  # or 'failed'
+#           image: sukeesh/k8s-job-notify:latest
+#           name: k8s-job-notify
+#           args: ['--cluster-name=test']
+#           resources:
+#             limits:
+#               cpu: 500m
+#               memory: 256Mi
+#             requests:
+#               cpu: 500m
+#               memory: 128Mi
