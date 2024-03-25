@@ -16,6 +16,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: github-action-trigger
+  namespace: flux-system
 spec:
   template:
     spec:
