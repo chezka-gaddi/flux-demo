@@ -4,7 +4,7 @@ metadata:
   labels:
     app: kjn
   name: k8s-job-notify
-  namespace: static-sample
+  namespace: flux-system
 spec:
   replicas: 1
   selector:
@@ -21,7 +21,9 @@ spec:
       containers:
         - env:
             - name: webhook
-              value: slack-webhook-url # creating a secret for this var is recommended
+              valueFrom: 
+                secretKeyRef:
+                  name: slack-webhook-url # creating a secret for this var is recommended
             - name: namespace
               valueFrom:
                 fieldRef:
