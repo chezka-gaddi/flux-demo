@@ -33,7 +33,7 @@ spec:
               value: '1'
             - name: "notification_level"
               value: 'all'  # or 'failed'
-          image: sukeesh/k8s-job-notify:1.7
+          image: sukeesh/k8s-job-notify:latest
           name: k8s-job-notify
           args: ['--cluster-name=test']
           resources:
