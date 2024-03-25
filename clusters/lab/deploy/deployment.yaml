@@ -20,6 +20,6 @@ spec:
         app: static-sample
     spec:
       containers:
-        - image: cgaddi/node-app:1.1.5
+        - image: cgaddi/node-app:1.1.6
           imagePullPolicy: IfNotPresent
           name: static-sample

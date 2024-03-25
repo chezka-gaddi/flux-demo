@@ -1,38 +1,39 @@
+# apiVersion: batch/v1
+# kind: Job
+# metadata:
+#   name: run-tests
+#   namespace: flux-system
+# spec:
+#   template:
+#     spec:
+#       containers:
+#       - name: run-tests
+#         image: perl:5.34.0
+#         command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+#       restartPolicy: Never
+#   backoffLimit: 4
+  
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: run-tests
+  name: github-action-trigger
   namespace: flux-system
 spec:
   template:
     spec:
       containers:
-      - name: run-tests
-        image: perl:5.34.0
-        command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
+      - name: github-action-trigger-container
+        image: alpine:latest  # Using a container with curl pre-installed
+        envFrom:
+        - secretRef:
+            name: test
+        command: ["sh", "-c"]
+        args:
+        - |
+          apk --upgrade add curl;
+          echo $token;
+          curl -X POST -H "Content-Type: application/json" https://api.restful-api.dev/objects -d '{"name": "Chez", "data": {"year": 1994}}';
       restartPolicy: Never
-  backoffLimit: 4
-  
-# apiVersion: batch/v1
-# kind: Job
-# metadata:
-#   name: github-action-trigger
-#   namespace: flux-system
-# spec:
-#   template:
-#     spec:
-#       containers:
-#       - name: github-action-trigger-container
-#         image: alpine:latest  # Using a container with curl pre-installed
-#         envFrom:
-#         - secretRef:
-#             name: test
-#         command: ["sh", "-c"]
-#         args:
-#           - |
-#             apk --upgrade add curl;
-#             curl -X POST -H "Content-Type: application/json" https://api.restful-api.dev/objects -d '{"name": "Chez", "data": {"year": 1994, "test": $token}}';
-#       restartPolicy: Never
 
 
 # apiVersion: batch/v1
@@ -45,7 +46,7 @@ spec:
 #     spec:
 #       containers:
 #       - name: github-action-trigger-container
-#         image: alpine:latest  # Using a container with curl pre-installed
+#         image: alpine:latest
 #         volumeMounts:
 #           - name: github-secret-volume
 #             mountPath: /etc/secret-volume
@@ -56,9 +57,6 @@ spec:
 #             apk --upgrade add curl;
 #             ACCESS_TOKEN=$(cat /etc/secret-volume/token);
 #             curl -X POST -H "Content-Type: application/json" https://api.restful-api.dev/objects -d '{"name": "Chez", "data": {"year": 1994, "test": $ACCESS_TOKEN}}';
-#         # envFrom:
-#         #   - secretRef:
-#         #       name: test
 #       restartPolicy: Never
 #       volumes:
 #         - name: github-secret-volume
