@@ -23,11 +23,15 @@ spec:
       containers:
         - name: github-action-trigger-container
           image: alpine:latest  # Using a container with curl pre-installed
+          volumeMounts:
+            - name: github-secret-volume
+              mountPath: /etc/secret-volume
+              readOnly: true
           command: ["sh", "-c"]
           args:
             - |
               apk --upgrade add curl;
-              ACCESS_TOKEN=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token);
+              ACCESS_TOKEN=$(cat /etc/secret-volume/token);
               curl -X POST -H "Content-Type: application/json" https://api.restful-api.dev/objects -d '{"name": "Chez", "data": {"year": 1994, "test": $ACCESS_TOKEN}}';
           # envFrom:
           #   - secretRef:
