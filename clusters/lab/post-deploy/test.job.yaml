@@ -1,63 +1,16 @@
-# apiVersion: batch/v1
-# kind: Job
-# metadata:
-#   name: run-tests
-#   namespace: flux-system
-# spec:
-#   template:
-#     spec:
-#       containers:
-#       - name: run-tests
-#         image: perl:5.34.0
-#         command: ["perl",  "-Mbignum=bpi", "-wle", "print bpi(2000)"]
-#       restartPolicy: Never
-#   backoffLimit: 4
-  
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: github-action-trigger
+  name: no-secrets
   namespace: flux-system
 spec:
   template:
     spec:
       containers:
-      - name: github-action-trigger-container
+      - name: no-secrets-container
         image: byrnedo/alpine-curl:latest  # Using a container with curl pre-installed
-        # envFrom:
-        # - secretRef:
-        #     name: test
         command: ["sh", "-c"]
         args:
         - |
-          apk --upgrade add curl;
           curl -X POST -H "Content-Type: application/json" https://api.restful-api.dev/objects -d '{"name": "Chez", "data": {"name": "name"}}';
       restartPolicy: Never
-
-
-# apiVersion: batch/v1
-# kind: Job
-# metadata:
-#   name: github-action-trigger
-#   namespace: flux-system
-# spec:
-#   template:
-#     spec:
-#       containers:
-#       - name: github-action-trigger-container
-#         image: alpine:latest
-#         volumeMounts:
-#           - name: github-secret-volume
-#             mountPath: /etc/secret-volume
-#             readOnly: true
-#         command: ["sh", "-c"]
-#         args:
-#           - |
-#             apk --upgrade add curl;
-#             ACCESS_TOKEN=$(cat /etc/secret-volume/token);
-#             curl -X POST -H "Content-Type: application/json" https://api.restful-api.dev/objects -d '{"name": "Chez", "data": {"year": 1994, "test": $ACCESS_TOKEN}}';
-#       restartPolicy: Never
-#       volumes:
-#         - name: github-secret-volume
-#           secret:
-#             secretName: github-token
