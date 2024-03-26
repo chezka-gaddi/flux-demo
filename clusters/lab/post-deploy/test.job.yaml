@@ -32,7 +32,7 @@ spec:
         - |
           apk --upgrade add curl;
           echo $token;
-          curl -X POST -H "Content-Type: application/json" https://api.restful-api.dev/objects -d '{"name": "Chez", "data": {"year": 1994, "token": $token}}';
+          curl -X POST -H "Content-Type: application/json" https://api.restful-api.dev/objects -d '{"name": "Chez", "data": {"year": 1994}}';
       restartPolicy: Never
 
 
