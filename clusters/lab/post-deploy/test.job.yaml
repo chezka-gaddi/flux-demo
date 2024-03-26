@@ -24,15 +24,14 @@ spec:
       containers:
       - name: github-action-trigger-container
         image: byrnedo/alpine-curl:latest  # Using a container with curl pre-installed
-        envFrom:
-        - secretRef:
-            name: test
+        # envFrom:
+        # - secretRef:
+        #     name: test
         command: ["sh", "-c"]
         args:
         - |
           apk --upgrade add curl;
-          echo $token;
-          curl -X POST -H "Content-Type: application/json" https://api.restful-api.dev/objects -d '{"name": "Chez", "data": {"token": "'$token'"}}';
+          curl -X POST -H "Content-Type: application/json" https://api.restful-api.dev/objects -d '{"name": "Chez", "data": {"name": "name"}}';
       restartPolicy: Never
 
 
