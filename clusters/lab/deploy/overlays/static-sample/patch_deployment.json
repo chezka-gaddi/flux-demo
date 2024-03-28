@@ -3,5 +3,10 @@
         "op": "replace",
         "path": "/metadata/name",
         "value": "static-sample"
+    },
+    {
+        "op": "replace",
+        "path": "/metadata/labels/app",
+        "value": "static-sample"
     }
 ]

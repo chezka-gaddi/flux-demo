@@ -2,13 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: static-sample1
+  labels:
+    app: <This value is automatically generated>
+  name: static-sample
   namespace: static-sample
 spec:
   replicas: 5
   selector:
     matchLabels:
       app: static-sample
+      release: <This value is automatically generated>
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -20,6 +23,6 @@ spec:
         app: static-sample
     spec:
       containers:
-        - image: cgaddi/node-app:1.1.5
+        - image: cgaddi/node-app:1.1.6
           imagePullPolicy: IfNotPresent
           name: static-sample
