@@ -2,7 +2,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: static-sample
+  name: static-sample1
   namespace: static-sample
 spec:
   replicas: 5

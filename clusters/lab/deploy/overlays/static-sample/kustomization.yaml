@@ -1,0 +1,15 @@
+bases:
+  - ../../static-sample
+patches:
+  - path: patch_deployment.json
+    target:
+      kind: Deployment
+      name: static-sample
+  # - path: patch_ingress.json
+  #   target:
+  #     kind: Ingress
+  #     name: static-sample
+  # - path: patch_service.json
+  #   target:
+  #     kind: Service
+  #     name: static-sample
