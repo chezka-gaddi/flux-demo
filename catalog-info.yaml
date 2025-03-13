@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: flux-demo
+  annotations:
+    github.com/project-slug: chezka-gaddi/flux-demo
+spec:
+  type: other
+  lifecycle: unknown
+  owner: invitae-cloud-edge
