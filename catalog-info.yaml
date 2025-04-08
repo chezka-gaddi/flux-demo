@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: flux-demo
+  description: Auto-generated catalog for flux-demo
+  annotations:
+    github.com/project-slug: chezka-gaddi/flux-demo
+spec:
+  type: service
+  lifecycle: experimental
+  owner: invitae-cloud-edge
